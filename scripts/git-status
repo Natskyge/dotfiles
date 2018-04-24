@@ -1,0 +1,48 @@
+#!/bin/sh
+git rev-parse 2> /dev/null || exit 1
+
+git status --porcelain -b | awk '
+
+/^## / {
+	branch = $0;
+	sub(/^## /, "", branch);
+	sub(/\.\.\..*/, "", branch);
+
+	if ($0 ~ /ahead /) {
+		ahead = $0;
+		sub(/.*ahead /,  "", ahead);
+		sub(/\].*|, .*/, "", ahead);
+	}
+
+	if ($0 ~ /behind /) {
+		behind = $0;
+		sub(/.*behind /, "", behind);
+		sub(/\].*|, .*/, "", behind);
+	}
+
+	next;
+}
+
+/^\?\? /  { untracked++; next; }
+/^U. /    { conflicts++; next; }
+/^.U /    { conflicts++; next; }
+/^DD /    { conflicts++; next; }
+/^AA /    { conflicts++; next; }
+/^.M /    { changed++;         }
+/^.D /    { changed++;         }
+/^[^ ]. / { staged++;          }
+
+END {
+	printf(" %s", branch);
+
+	if (untracked) printf(" ?%d", untracked);
+	if (conflicts) printf(" x%d", conflicts);
+	if (changed  ) printf(" +%d", changed);
+	if (staged   ) printf(" #%d", staged);
+	if (behind   ) printf(" v%d", behind);
+	if (ahead    ) printf(" ^%d", ahead);
+}'
+
+[ -d "$(git rev-parse --git-dir)/rebase-merge" ] && printf ' rebase'
+
+printf '\n'

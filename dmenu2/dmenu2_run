@@ -1,0 +1,1 @@
+dmenu_run -z -b -x 341 -h 40 -w 683 -uh 2 -p Open: -fn scientifica-11:normal -nb "#263238" -nf "#EEFFFF" -sb "#314549" -sf "#C3E88D" -uc "#B2CCD6"

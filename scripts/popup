@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# how long should the popup remain?
+duration=3
+
+# define geometry
+barx=341
+bary=0
+barw=683
+barh=40
+
+# colors
+bar_bg='#263238'
+bar_fg='#EEFFFF' # white is default
+
+# font used
+bar_font='scientifica:size=11'
+
+# compute all this
+baropt="-b -g ${barw}x${barh}+${barx}+${bary} -B${bar_bg} -f ${bar_font}"
+
+# Create the popup and make it live for 3 seconds
+(echo "%{c}$@"; sleep ${duration}) | lemonbar ${baropt}

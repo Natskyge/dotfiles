@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+export SHELL="$PLAN9/bin/rc"
+export acmeshell="$PLAN9/bin/rc"
+export BROWSER=safari
+export tabstop=4
+export TERM=dumb
+export PAGER=nobs
+
+# Path to 'a' script itself
+acme_bin_dir=$( cd $(dirname $0) && pwd )
+
+# Where are the plumber rules?
+acme_plumber_rules="$acme_bin_dir/../plumbing"
+
+if [ "$(pgrep plumber)" ]; then
+	echo plumber is running
+else
+	echo starting plumber
+	plumber
+	cat "$acme_plumber_rules" "$PLAN9/plumb/basic" | 9p write plumb/rules
+fi
+
+acme -a -f /mnt/font/'DejaVu Sans Mono'/10a/font $1

@@ -1,0 +1,17 @@
+"~/bin/volume +"
+    XF86AudioRaiseVolume
+
+"~/bin/volume -"
+    XF86AudioLowerVolume
+
+"~/bin/volume !"
+    XF86AudioMute
+
+"~/bin/popup $(~/bin/volume level)"
+    XF86AudioRaiseVolume
+
+"~/bin/popup $(~/bin/volume level)"
+    XF86AudioLowerVolume
+
+"~/bin/popup $(~/bin/volume level)"
+    XF86AudioMute

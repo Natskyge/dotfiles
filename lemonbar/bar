@@ -1,0 +1,113 @@
+#!/usr/bin/bash
+
+#Colors
+graybg="#2C393F"
+lightbg="#37474F"
+bluefg="#89DDFF"
+orangefg="#EA9560"
+redfg="#EC5F67"
+greenfg="#8BD649"
+yellowfg="#FFCC00"
+colorAccent="#C3E88D"
+grayAccent="#546E7A"
+
+
+# Define the clock
+Clock() {
+        TIME=$(date "+%R")
+
+		echo -n -e "%{F${colorAccent}}\ue016%{F-} $TIME"
+}
+
+Battery() {
+	battery="$(</sys/class/power_supply/BAT0/capacity)"
+	charging="$(</sys/class/power_supply/BAT0/status)"
+
+	case "$battery" in
+		[0-9]|10)
+			battery="%{F${colorAccent}}\ue243%{F-}  ${battery}"
+		;;
+
+		1[0-9]|2[0-5])
+			battery="%{F${colorAccent}}\ue245%{F-}  ${battery}"
+		;;
+
+		2[6-9]|3[0-9]|4[0-9]|50)
+			battery="%{F${colorAccent}}\ue247%{F-}  ${battery}"
+		;;
+
+		5[1-9]|6[0-9]|7[0-5])
+			battery="%{F${colorAccent}}\ue249%{F-}  ${battery}"
+		;;
+
+		7[6-9]|8[0-9]|9[0-9]|100)
+			battery="%{F${colorAccent}}\ue24b%{F-}  ${battery}"
+		;;
+	esac
+
+	echo -e -n $battery
+}
+
+Tabs() {
+    cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'`
+    tot=`xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}'`
+
+    for w in `seq 0 $((cur - 1))`; do line="${line}%{F${grayAccent}} \ue190 %{F-}"; done
+    line="${line}%{F${colorAccent}} \ue190 %{F-}"
+	for w in `seq $((cur + 1)) $(($tot - 1))`; do line="${line}%{F${grayAccent}} \ue190 %{F-}"; done
+    echo -e $line
+}
+
+NowPlaying() {
+	if pgrep -x "cmus" > /dev/null
+	then
+		status=$( cmus-remote -Q | grep status\ | sed 's/status //' )
+		if [[ "$status" = *playing* ]] || [[ "$status" = *paused* ]]
+		then
+			artist=$( cmus-remote -Q | grep tag\ artist\ | sed 's/tag artist //' )
+			title=$( cmus-remote -Q | grep tag\ title\ | sed 's/tag title //' )
+
+			echo $title - $artist
+		elif [[ "$status" = *stopped* ]]
+		then
+			echo " "
+		fi
+	else
+		echo 
+	fi
+}
+
+playPause() {
+	if pgrep -x "cmus" > /dev/null
+	then
+		status=$( cmus-remote -Q | grep status\ | sed 's/status //' )
+		if [[ "$status" = *playing*  ]]
+		then
+			echo -ne "%{A:sh | cmus-remote --pause:}%{F${colorAccent}}\ue059%{F-}%{A}"
+		elif [[ "$status" = *paused* ]]
+		then
+			echo -ne "%{A:sh | cmus-remote --play:}%{F${colorAccent}}\ue058%{F-}%{A}"
+		elif [[ "$status" = *stopped* ]]
+		then
+			echo -ne "%{A:sh | cmus-remote --play:}%{F${colorAccent}}\ue057%{F-}%{A}"
+		fi
+	else
+		echo -ne " \ue057 "
+	fi
+}
+
+prev() {
+	echo -ne "%{A:sh | cmus-remote --prev:}%{F${colorAccent}}\ue055%{F-}%{A}"
+}
+
+next() {
+	echo -ne "%{A:sh | cmus-remote --next:}%{F${colorAccent}}\ue05b%{F-}%{A}"
+}
+
+# Print the clock
+while true; do
+     BAR_INPUT="%{l}%{O10}$(Clock)%{O10}$(Battery)%%{c}$(Tabs)
+	 %{r}$(NowPlaying)%{O15}$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}" 
+     echo $BAR_INPUT
+     sleep 0.25
+done

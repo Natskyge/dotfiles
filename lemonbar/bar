@@ -106,7 +106,7 @@ next() {
 
 # Print the clock
 while true; do
-     BAR_INPUT="%{l}%{O10}$(Clock)%{O10}$(Battery)%%{c}$(Tabs)
+     BAR_INPUT="%{l}%{O15}$(Clock)%{O15}$(Battery)%%{c}$(Tabs)
 	 %{r}$(NowPlaying)%{O15}$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}" 
      echo $BAR_INPUT
      sleep 0.25

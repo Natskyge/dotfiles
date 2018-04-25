@@ -40,7 +40,7 @@ static const uint8_t borders[] = {5,7,2,3};
 #define LOOK_INTO "WM_NAME"
 static const char *ignore_names[]  = {"bar", "xclock"};
 ///--Menus and Programs---///
-static const char *menucmd[]       = { "dmenu3", NULL };
+static const char *menucmd[]       = { "dmenu2_run", NULL };
 static const char *terminalcmd[]   = { "st", NULL };
 #define WORKSPACES 5
 ///--Custom foo---///

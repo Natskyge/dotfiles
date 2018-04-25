@@ -9,9 +9,9 @@ PS1='$(
     [ -z "${PWD##$HOME*}" ] && pwd="~${PWD#$HOME}" || pwd="$PWD"
 
     printf "\n"
-    printf "\033[1;3%sm│\033[m %s%s\n" "$color" "$pwd" "$(git-status)"
-    printf "\033[1;3%sm│\033[m " "$color"
-)'
+    printf "\033[1;3%sm│\033[m %s%s\n" "\[$color\]" "$pwd" "$(git-status)"
+    printf "\033[1;3%sm│\033[m" "\[$color\]"
+) '
 
 export FZF_DEFAULT_COMMAND='ag --depth 10 --hidden --ignore .git -f -g ""'
 

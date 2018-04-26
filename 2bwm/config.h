@@ -5,7 +5,7 @@
 /* Move this many pixels when moving or resizing with keyboard unless the window has hints saying otherwise.
  *0)move step slow   1)move step fast
  *2)mouse slow       3)mouse fast     */
-static const uint16_t movements[] = {50,100,15,400};
+static const uint16_t movements[] = {50,90,15,400};
 /* resize by line like in mcwm -- jmbi */
 static const bool     resize_by_line          = false;
 /* the ratio used when resizing and keeping the aspect */
@@ -13,7 +13,7 @@ static const float    resize_keep_aspect_ratio= 1.03;
 ///---Offsets---///
 /*0)offsetx          1)offsety
  *2)maxwidth         3)maxheight */
-static const uint8_t offsets[] = {0,0,0,40};
+static const uint8_t offsets[] = {15,15,30,85};
 ///---Colors---///
 /*0)focuscol         1)unfocuscol
  *2)fixedcol         3)unkilcol
@@ -193,11 +193,11 @@ static key keys[] = {
        DESKTOPCHANGE(     XK_3,                             2)
        DESKTOPCHANGE(     XK_4,                             3)
        DESKTOPCHANGE(     XK_5,                             4)
-       DESKTOPCHANGE(     XK_6,                             5)
-       DESKTOPCHANGE(     XK_7,                             6)
-       DESKTOPCHANGE(     XK_8,                             7)
-       DESKTOPCHANGE(     XK_9,                             8)
-       DESKTOPCHANGE(     XK_0,                             9)
+//       DESKTOPCHANGE(     XK_6,                             5)
+//       DESKTOPCHANGE(     XK_7,                             6)
+//       DESKTOPCHANGE(     XK_8,                             7)
+//       DESKTOPCHANGE(     XK_9,                             8)
+//       DESKTOPCHANGE(     XK_0,                             9)
 };
 // the last argument makes it a root window only event
 static Button buttons[] = {

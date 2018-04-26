@@ -10,6 +10,7 @@ greenfg="#8BD649"
 yellowfg="#FFCC00"
 colorAccent="#C3E88D"
 grayAccent="#546E7A"
+defaultbg="#263238"
 
 
 # Define the clock
@@ -67,10 +68,10 @@ NowPlaying() {
 			artist=$( cmus-remote -Q | grep tag\ artist\ | sed 's/tag artist //' )
 			title=$( cmus-remote -Q | grep tag\ title\ | sed 's/tag title //' )
 
-			echo $title - $artist
+			echo "$title - $artist%{O15}"
 		elif [[ "$status" = *stopped* ]]
 		then
-			echo " "
+			echo ""
 		fi
 	else
 		echo 
@@ -106,8 +107,9 @@ next() {
 
 # Print the clock
 while true; do
-     BAR_INPUT="%{l}%{O15}$(Clock)%{O15}$(Battery)%%{c}$(Tabs)
-	 %{r}$(NowPlaying)%{O15}$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}" 
+     BAR_INPUT="%{l}%{B${defaultbg}}%{O15}$(Clock)%{O15}$(Battery)%%{O15}%{B-}
+	 %{c}%{B${defaultbg}}%{O15}$(Tabs)%{O15}%{B-}
+	 %{r}%{O15}%{B${defaultbg}}%{O15}$(NowPlaying)$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}%{B-}" 
      echo $BAR_INPUT
      sleep 0.25
 done

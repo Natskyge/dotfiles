@@ -1,1 +1,24 @@
-dmenu_run -z -b -x 341 -h 40 -w 683 -uh 2 -p Open: -fn scientifica-11:normal -nb "#263238" -nf "#EEFFFF" -sb "#314549" -sf "#C3E88D" -uc "#B2CCD6"
+#!/usr/bin/sh
+
+# Geometry
+menu_x=341
+menu_y=40
+menu_h=40
+menu_w=683
+underline_h=2
+geometry="-b -x ${menu_x} -h ${menu_y} -w ${menu_w} -uh ${underline_h}"
+
+
+
+# Font
+font='scientifica-11:bold'
+
+# Colors
+normal_bg="#121c21"
+normal_fg="#aaafb2"
+selection_bg="#1e2e36"
+selection_fg="#76a08c"
+underline_bg="#7b8e98"
+
+# Run
+dmenu_run -z ${geometry} -p Open: -fn ${font} -nb "#121c21" -nf "#aaafb2" -sb "#1e2e36" -sf "#76a08c" -uc "#7b8e98"

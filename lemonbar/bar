@@ -1,16 +1,13 @@
 #!/usr/bin/bash
 
 #Colors
-graybg="#2C393F"
-lightbg="#37474F"
-bluefg="#89DDFF"
-orangefg="#EA9560"
-redfg="#EC5F67"
-greenfg="#8BD649"
-yellowfg="#FFCC00"
-colorAccent="#C3E88D"
-grayAccent="#546E7A"
-defaultbg="#263238"
+colorAccent="#76a08c"
+grayAccent="#3f6173"
+defaultbg="#121c21"
+
+# State of popup, 0 off, 1 on
+poup=0
+pidof_popup=-1
 
 
 # Define the clock
@@ -105,11 +102,22 @@ next() {
 	echo -ne "%{A:sh | cmus-remote --next:}%{F${colorAccent}}\ue05b%{F-}%{A}"
 }
 
+popupBar() {
+	if [[ ${popup} = 0 ]]
+	then
+		popup=1
+		pidof_popup=$(n30f -x 12 -y 40 ~/dotfiles/wallpaper/popup.png & echo $!)
+	else
+		popup=0
+	fi
+}
+
 # Print the clock
 while true; do
-     BAR_INPUT="%{l}%{B${defaultbg}}%{O15}$(Clock)%{O15}$(Battery)%%{O15}%{B-}
-	 %{c}%{B${defaultbg}}%{O15}$(Tabs)%{O15}%{B-}
-	 %{r}%{O15}%{B${defaultbg}}%{O15}$(NowPlaying)$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}%{B-}" 
-     echo $BAR_INPUT
-     sleep 0.25
+	BAR_INPUT="%{l}%{B${colorAccent}}%{F${defaultbg}}%{O17}+%{O17}%{F-}%{B-}
+	%{B${defaultbg}}%{O15}$(Clock)%{O15}$(Battery)%%{O15}%{B-}
+	%{c}%{B${defaultbg}}%{O15}$(Tabs)%{O15}%{B-}
+	%{r}%{O15}%{B${defaultbg}}%{O15}$(NowPlaying)$(prev)%{O15}$(playPause)%{O15}$(next)%{O15}%{B-}" 
+    echo $BAR_INPUT
+    sleep 0.25
 done

@@ -1,37 +1,38 @@
 set selection-clipboard clipboard
 
-# Base16 Material
-# Author: Nate Peterson
+set guioptions ""
 
-set default-bg                  "#263238"
-set default-fg                  "#2E3C43"
+set font						"scientifica 8"
 
-set statusbar-fg                "#B2CCD6"
-set statusbar-bg                "#314549"
+set default-bg                  "#121c21"
+set default-fg                  "#1e2e36"
 
-set inputbar-bg                 "#263238"
-set inputbar-fg                 "#FFFFFF"
+set statusbar-fg                "#7b8e98"
+set statusbar-bg                "#304b59"
 
-set notification-bg             "#263238"
-set notification-fg             "#FFFFFF"
+set inputbar-bg                 "#121c21"
+set inputbar-fg                 "#cfcfcf"
 
-set notification-error-bg       "#263238"
-set notification-error-fg       "#F07178"
+set notification-bg             "#121c21"
+set notification-fg             "#cfcfcf"
 
-set notification-warning-bg     "#263238"
-set notification-warning-fg     "#F07178"
+set notification-error-bg       "#121c21"
+set notification-error-fg       "#f0696f"
 
-set highlight-color             "#FFCB6B"
-set highlight-active-color      "#82AAFF"
+set notification-warning-bg     "#121c21"
+set notification-warning-fg     "#f0696f"
 
-set completion-bg               "#2E3C43"
-set completion-fg               "#82AAFF"
+set highlight-color             "#f6cca1"
+set highlight-active-color      "#718c97"
 
-set completion-highlight-fg     "#FFFFFF"
-set completion-highlight-bg     "#82AAFF"
+set completion-bg               "#1e2e36"
+set completion-fg               "#718c97"
 
-set recolor-lightcolor          "#263238"
-set recolor-darkcolor           "#EEFFFF"
+set completion-highlight-fg     "#cfcfcf"
+set completion-highlight-bg     "#718c97"
+
+set recolor-lightcolor          "#121c21"
+set recolor-darkcolor           "#aaafb2"
 
 set recolor                     "false"
 set recolor-keephue				"false"

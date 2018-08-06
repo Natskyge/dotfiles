@@ -27,3 +27,6 @@ PATH=$PATH:$PLAN9/bin export PATH
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 alias yt='youtube-viewer'
+alias zat='zathura $(fzf)'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

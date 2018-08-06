@@ -10,8 +10,8 @@ barw=683
 barh=40
 
 # colors
-bar_bg='#263238'
-bar_fg='#EEFFFF' # white is default
+bar_bg='#121c21'
+bar_fg='#aaafb2' # white is default
 
 # font used
 bar_font='scientifica:size=11'

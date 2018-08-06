@@ -2,3 +2,4 @@
 
 sudo xbps-install -Su
 sudo fstrim -v --all
+date

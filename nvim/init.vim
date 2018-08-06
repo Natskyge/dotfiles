@@ -27,10 +27,11 @@ if dein#load_state('/home/natskyge/.config/nvim/dein')
   call dein#add('junegunn/rainbow_parentheses.vim')
   call dein#add('NLKNguyen/c-syntax.vim')
   call dein#add('chriskempson/base16-vim')
-  call dein#add('arcticicestudio/nord-vim')
   call dein#add('lervag/vimtex')
   call dein#add('junegunn/goyo.vim')
-  call dein#add('vim-pandoc/vim-pandoc')
+  call dein#add('godlygeek/tabular')
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('vim-scripts/paredit.vim')
 
   " Required:
   call dein#end()
@@ -75,10 +76,10 @@ map F <Plug>Sneak_S
 let g:buftabline_numbers=2
 
 "LaTeX
-let g:nofrils_heavylinenumbers=1
-let g:nofrils_strbackgrounds=1
-let g:nofrils_heavycomments=1 
 let g:tex_fast = "bMpr"
+let g:vimtex_compiler_progname = 'nvr'
+
+let g:paredit_electric_return = 0
 
 "End plugin setup-------------------------
 
@@ -178,6 +179,8 @@ let mapleader=" "
 " Terminal
   nnoremap <leader>t <esc>:split<CR>:resize 10<CR>:term<CR>
 
+  nnoremap <leader>lp :!lvprw %:p &<CR>
+
 "End keybindings--------------------------
 
 
@@ -186,8 +189,8 @@ let mapleader=" "
 "hi  Normal ctermbg=none
 set termguicolors
 set cursorline
-set background=dark
-colorscheme base16-material
+set background=light
+colorscheme agila
 
 " Solarized
 "hi BufTabLineActive  guibg=#073642 guifg=#839496
@@ -197,6 +200,7 @@ colorscheme base16-material
 
 set listchars=tab:│\ ,nbsp:␣,trail:∙,extends:>,precedes:<,eol:¬
 set fillchars=vert:\│
+set list
 
 "End colorscheme--------------------------
 

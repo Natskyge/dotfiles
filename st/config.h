@@ -6,8 +6,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-// char font[] = "-misc-tamzen-medium-r-normal--14-101-100-100-c-70-iso8859-1:pixelsize=14:antialias=false:autohint=true";
-char font[] = "scientifica:pixelsize=11:antialias=false:autohint=true";
+//char font[] = "-misc-tamzen-medium-r-normal--14-101-100-100-c-70-iso8859-1:pixelsize=14:antialias=false:autohint=true";
+//char font[] = "Spectra:pixelsize=14:antialias=false:autohint=true";
+//char font[] = "scientifica:pixelsize=11:antialias=false:autohint=true";
+//char font[] = "-Misc-Tamsyn-Medium-R-Normal--20-145-100-100-C-100-ISO8859-1:pixelsize=15:antialias=false:autohint=true";
+char font[] = "cherry:pixelsize=11:antialias=false:autohint=true";
 int borderpx = 25;
 
 /*
@@ -86,22 +89,42 @@ static unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
 const char *colorname[] = {
-  "#2e3c43", /* base01 */
-  "#f07178", /* base08 */
-  "#c3e88d", /* base0B */
-  "#ffcb6b", /* base0A */
-  "#82aaff", /* base0D */
-  "#ff5370", /* base0F */
-  "#89ddff", /* base0C */
-  "#eeffff", /* base06 */
-  "#263238", /* base00 */
-  "#f78c6c", /* base09 */
-  "#314549", /* base02 */
-  "#546e7a", /* base03 */
-  "#b2ccd6", /* base04 */
-  "#c792ea", /* base0E */
-  "#eeffff", /* base05 */
-  "#ffffff", /* base07 */
+
+   /* ----- agila ----- */
+   "#1e2e36", /* base01 */
+   "#f0696f", /* base08 */
+   "#76a08c", /* base0B */
+   "#f7cca1", /* base0A */
+   "#718c97", /* base0D */
+   "#877366", /* base0F */
+   "#bcd9e8", /* base0C */
+   "#dae0ed", /* base06 */
+   "#121c21", /* base00 */
+   "#fa9a6a", /* base09 */
+   "#304b59", /* base02 */
+   "#3f6173", /* base03 */
+   "#7b8e98", /* base04 */
+   "#ceb5ce", /* base0E */
+   "#aaafb2", /* base05 */
+   "#cfcfcf", /* base07 */
+
+   ///* ---- designr ---- */
+   //"#253034", /* base01 */
+   //"#a66959", /* base08 */
+   //"#769070", /* base0B */
+   //"#ac8d6e", /* base0A */
+   //"#607a86", /* base0D */
+   //"#907B63", /* base0F */
+   //"#60867f", /* base0C */
+   //"#242e32", /* base06 */
+   //"#242e32", /* base00 */
+   //"#a97b63", /* base09 */
+   //"#2B373C", /* base02 */
+   //"#35444b", /* base03 */
+   //"#838a85", /* base04 */
+   //"#8a757e", /* base0E */
+   //"#c4c4b5", /* base05 */
+   //"#c4c4b5", /* base07 */
 };
 
 /*

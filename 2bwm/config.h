@@ -13,13 +13,13 @@ static const float    resize_keep_aspect_ratio= 1.03;
 ///---Offsets---///
 /*0)offsetx          1)offsety
  *2)maxwidth         3)maxheight */
-static const uint8_t offsets[] = {15,15,30,85};
+static const uint8_t offsets[] = {0,0,0,40};
 ///---Colors---///
 /*0)focuscol         1)unfocuscol
  *2)fixedcol         3)unkilcol
  *4)fixedunkilcol    5)outerbordercol
  *6)emptycol         */
-static const char *colors[] = {"#314549","#2E3C43","#FFCB6B","#FF5370","#F07178","#263238","#000000"};
+static const char *colors[] = {"#304b59","#1e2e36","#f7cca1","#f0696f","fa9a6a","#121c21","#000000"};
 /* if this is set to true the inner border and outer borders colors will be swapped */
 static const bool inverted_colors = false;
 ///---Cursor---///
@@ -193,11 +193,11 @@ static key keys[] = {
        DESKTOPCHANGE(     XK_3,                             2)
        DESKTOPCHANGE(     XK_4,                             3)
        DESKTOPCHANGE(     XK_5,                             4)
-//       DESKTOPCHANGE(     XK_6,                             5)
-//       DESKTOPCHANGE(     XK_7,                             6)
-//       DESKTOPCHANGE(     XK_8,                             7)
-//       DESKTOPCHANGE(     XK_9,                             8)
-//       DESKTOPCHANGE(     XK_0,                             9)
+//     DESKTOPCHANGE(     XK_6,                             5)
+//     DESKTOPCHANGE(     XK_7,                             6)
+//     DESKTOPCHANGE(     XK_8,                             7)
+//     DESKTOPCHANGE(     XK_9,                             8)
+//     DESKTOPCHANGE(     XK_0,                             9)
 };
 // the last argument makes it a root window only event
 static Button buttons[] = {

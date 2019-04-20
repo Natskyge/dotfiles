@@ -18,6 +18,7 @@ export FZF_DEFAULT_COMMAND='ag --depth 10 --hidden --ignore .git -f -g ""'
 export FZF_DEFAULT_OPTS='--height 40%'
 
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/root/.local/bin
 
 set -o vi
 

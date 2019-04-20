@@ -1,5 +1,3 @@
-set selection-clipboard clipboard
-
 set guioptions ""
 
 set font						"scientifica 8"

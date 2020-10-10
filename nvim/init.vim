@@ -15,7 +15,10 @@ if dein#load_state('/home/natskyge/.config/nvim/dein')
   call dein#add('/home/natskyge/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
 
   " Plugins
-  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('ncm2/ncm2')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('ncm2/ncm2-bufword')
+  call dein#add('ncm2/ncm2-path')
   call dein#add('raimondi/delimitmate')
   call dein#add('scrooloose/nerdtree')
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
@@ -53,8 +56,90 @@ endif
 
 "Deoplete
 "call deoplete#enable()
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-let g:deoplete#enable_at_startup = 1
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" let g:deoplete#enable_at_startup = 1
+
+" ncm2
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"Confiugre with LaTeX
+augroup my_cm_setup
+autocmd!
+autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd Filetype tex call ncm2#register_source({
+		\ 'name' : 'vimtex-cmds',
+		\ 'priority': 8,
+		\ 'complete_length': -1,
+		\ 'scope': ['tex'],
+		\ 'matcher': {'name': 'prefix', 'key': 'word'},
+		\ 'word_pattern': '\w+',
+		\ 'complete_pattern': g:vimtex#re#ncm2#cmds,
+		\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+		\ })
+autocmd Filetype tex call ncm2#register_source({
+		\ 'name' : 'vimtex-labels',
+		\ 'priority': 8,
+		\ 'complete_length': -1,
+		\ 'scope': ['tex'],
+		\ 'matcher': {'name': 'combine',
+		\             'matchers': [
+		\               {'name': 'substr', 'key': 'word'},
+		\               {'name': 'substr', 'key': 'menu'},
+		\             ]},
+		\ 'word_pattern': '\w+',
+		\ 'complete_pattern': g:vimtex#re#ncm2#labels,
+		\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+		\ })
+autocmd Filetype tex call ncm2#register_source({
+		\ 'name' : 'vimtex-files',
+		\ 'priority': 8,
+		\ 'complete_length': -1,
+		\ 'scope': ['tex'],
+		\ 'matcher': {'name': 'combine',
+		\             'matchers': [
+		\               {'name': 'abbrfuzzy', 'key': 'word'},
+		\               {'name': 'abbrfuzzy', 'key': 'abbr'},
+		\             ]},
+		\ 'word_pattern': '\w+',
+		\ 'complete_pattern': g:vimtex#re#ncm2#files,
+		\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+		\ })
+autocmd Filetype tex call ncm2#register_source({
+		\ 'name' : 'bibtex',
+		\ 'priority': 8,
+		\ 'complete_length': -1,
+		\ 'scope': ['tex'],
+		\ 'matcher': {'name': 'combine',
+		\             'matchers': [
+		\               {'name': 'prefix', 'key': 'word'},
+		\               {'name': 'abbrfuzzy', 'key': 'abbr'},
+		\               {'name': 'abbrfuzzy', 'key': 'menu'},
+		\             ]},
+		\ 'word_pattern': '\w+',
+		\ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
+		\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+		\ })
+augroup END
 
 
 "FZF
@@ -76,9 +161,13 @@ map F <Plug>Sneak_S
 let g:buftabline_numbers=2
 
 "LaTeX
+let g:tex_flavor = 'latex'
 let g:tex_fast = "bMpr"
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_automatic = 0
 let g:vimtex_compiler_progname = 'nvr'
 
+"Paredit
 let g:paredit_electric_return = 0
 
 "End plugin setup-------------------------

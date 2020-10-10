@@ -22,3 +22,5 @@ compton --config ~/.config/compton/compton.conf -b
 #windowchef&
 2bwm&
 exec st
+
+redshift
